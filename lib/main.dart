@@ -1,6 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
+import 'App/presentation/bloc/Elementi_Home.dart';
+
 //class news Crea oggetto news da mettere nel body
 //Attezione ai campi all'interno di News
 //FIXME NEWS non va
@@ -24,9 +26,8 @@ class _elementState extends State<element>{
   Widget build(BuildContext context,) {
 return Scaffold();
   }
-
 }
-
+//Fine oggetti relativi agli elementi News
 //Main
 void main() {
   runApp(const MyApp());
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
         secondaryHeaderColor: const Color.fromARGB(2000, 250, 182, 80),
       ),
       home: const MyHomePage(
-        //FIXME attenzione a News
+        //FIXME attenzione a News non sicuro!
         title: 'News',
+        //richiesta di oggetti di tipo news
         newsList: [
           News(restName: 'Alice'),
           News(restName: 'Pizzeria da Giovanni'),
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key,required this.title , required this.newsList}) : super(key: key);
   final String title;
-  final List<News> newsList;
+  final List<News> newsList; //required nella crezione del blocco
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -70,55 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(300),
-        child: AppBar(
-          title:
-          const Align(
-            alignment: Alignment.bottomRight,
-          child: Text('Benvenuto Gabriele',
-            style:
-                TextStyle(fontWeight: FontWeight.bold, fontFamily: 'JB Mono', fontSize: 25)
-            ),
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(40)
-            ),
-          ),
-        ),
-      ),*/
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.white,
-        color: const Color.fromARGB(255, 250, 182, 80),
-        items: const <Widget> [
-          Icon(Icons.water_damage, size: 30,),
-          Icon(Icons.add_location, size: 30,),
-          Icon(Icons.zoom_in, size: 30,),
-          Icon(Icons.account_circle, size: 30,)
-        ],
-      ),
-      body: const CustomScrollView(
-        slivers: <Widget> [
-          SliverAppBar(
-           pinned: true,
-            floating: false,
-            snap: false,
-            expandedHeight: 200,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Benvenuto Gabriele", textAlign: TextAlign.right,),
-            ),
-            shape: 
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(40)
-              )
-            ),
-          ),
-          //FIXME COME CAZZ FUONZIONA SLIVERLIST
-        ],
-      ),
+      bottomNavigationBar: Bottom_Navigation_Bar(),
+      body: Top_Bar(),
     );
   }
 }

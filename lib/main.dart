@@ -17,7 +17,6 @@ class element extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() => _elementState();
-
 }
 //Stato di Element
 class _elementState extends State<element>{
@@ -62,7 +61,6 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key,required this.title , required this.newsList}) : super(key: key);
   final String title;
   final List<News> newsList; //required nella crezione del blocco
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }

@@ -24,28 +24,28 @@ class Top_Bar extends StatelessWidget
 {
   @override
   Widget build(BuildContext context) {
-   return const CustomScrollView(
-     slivers: <Widget> [
-       SliverAppBar(
-         pinned: true,
-         floating: false,
-         snap: false,
-         expandedHeight: 200,
-         flexibleSpace: FlexibleSpaceBar(
-           title: Text(
-             "Benvenuto Gabriele",
-             textAlign: TextAlign.right,),
-         ),
-         shape:
-         RoundedRectangleBorder(
-             borderRadius: BorderRadius.only(
-                 bottomLeft: Radius.circular(40)
-             )
-         ),
-       ),
-       //FIXME COME CAZZ FUONZIONA SLIVERLIST
-     ],
-   );
+    return const CustomScrollView(
+      slivers: <Widget> [
+        SliverAppBar(
+          pinned: true,
+          floating: false,
+          snap: false,
+          expandedHeight: 200,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(
+              "Benvenuto Gabriele",
+              textAlign: TextAlign.right,),
+          ),
+          shape:
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40)
+              )
+          ),
+        ),
+        //FIXME COME CAZZ FUONZIONA SLIVERLIST
+      ],
+    );
   }
 }
 
@@ -129,10 +129,10 @@ class Silver_List extends StatelessWidget{
             (_, int index) {
           return ListTile(
             shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                  ),
-                ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+              ),
+            ),
             title: Text(
                 'Ristorante'
             ),

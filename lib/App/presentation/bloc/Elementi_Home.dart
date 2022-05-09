@@ -1,5 +1,7 @@
+import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
 //Barra di navigazione dinamica
 class Bottom_Navigation_Bar extends StatelessWidget {
@@ -115,7 +117,14 @@ class Silver_App_Bar_Home extends StatelessWidget{
           )
       ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text('Benvenuto Gabriele', textScaleFactor: 1),
+        centerTitle: true,
+        title: ListTile(
+          title:
+            Text('App', style: TextStyle(fontSize: 40.0)),
+          subtitle: Text(
+              'Benvenuto Gabriele'
+          ),
+        ),
       ),
     );
   }
@@ -149,3 +158,90 @@ class Silver_List extends StatelessWidget{
     );
   }
 }
+
+class Sliver_App_Bar_Home extends StatelessWidget{
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      stretch: true,
+      onStretchTrigger: () {
+        // Function callback for stretch
+        return Future<void>.value();
+      },
+      expandedHeight: 300.0,
+      flexibleSpace: FlexibleSpaceBar(
+        stretchModes: const <StretchMode>[
+          StretchMode.zoomBackground,
+          StretchMode.blurBackground,
+          StretchMode.fadeTitle,
+        ],
+        centerTitle: true,
+        title: ListTile(
+          title: Text('App', style: TextStyle(fontSize: 40.0)),
+          subtitle: Text('Benvenuto Gabriele'),
+        ),
+      )
+    );
+  }
+}
+
+class Sliver_List extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+          <Widget>[
+            Padding(padding: EdgeInsets.all(10)),
+            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1)),
+            Padding(padding: EdgeInsets.all(10)),
+            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 4)),
+            Padding(padding: EdgeInsets.all(10)),
+            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 5)),
+            Padding(padding: EdgeInsets.all(10)),
+            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 3)),
+            Padding(padding: EdgeInsets.all(10)),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Sunday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+            ListTile(
+              leading: Icon(Icons.wb_sunny),
+              title: Text('Monday'),
+              subtitle: Text('sunny, h: 80, l: 65'),
+            ),
+          // ListTiles++
+        ],
+      ),
+    );
+  }
+}
+

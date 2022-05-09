@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-
+import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
 void main(){
   runApp(new Home_app_page());
 }
@@ -17,16 +17,13 @@ class Home_app_page extends StatelessWidget{
           child:
         ),*/
         body: CustomScrollView(
-          slivers: <Widget>[
+          slivers: <Widget>[//lista di figli
             Silver_App_Bar_Home(),
-            Silver_List(),
+            //Silver_List(),
+            //Sliver_App_Bar_Home(),
+            Sliver_List(),
           ],
         ),
-        /*body: Container(
-          margin: EdgeInsets.symmetric(vertical: 100.0),//margine dall'Alto
-          height: 200.0,
-          child:Orizontal_list(),
-        )*/
       ),
     );
   }

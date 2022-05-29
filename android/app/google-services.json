@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "58398985927",
+    "firebase_url": "https://appmaturita-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "appmaturita",
+    "storage_bucket": "appmaturita.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58398985927:android:20e56ce05da0aa2b83f8e2",
+        "android_client_info": {
+          "package_name": "com.Maturita.app_ristoranti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58398985927-1bf7jo8v8f9rh6gkldr4gpr4v20676fg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUqfJsPuLGCMj2exXgTQeaT33OwuJKGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58398985927-1bf7jo8v8f9rh6gkldr4gpr4v20676fg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58398985927:android:a0e6720b6e4bedc983f8e2",
+        "android_client_info": {
+          "package_name": "com.example.app_ristoranti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58398985927-1bf7jo8v8f9rh6gkldr4gpr4v20676fg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUqfJsPuLGCMj2exXgTQeaT33OwuJKGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58398985927-1bf7jo8v8f9rh6gkldr4gpr4v20676fg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

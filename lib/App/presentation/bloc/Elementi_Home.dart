@@ -1,4 +1,5 @@
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -186,60 +187,68 @@ class Sliver_App_Bar_Home extends StatelessWidget{
 
 class Sliver_List extends StatelessWidget {
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildListDelegate(
-          <Widget>[
-            Padding(padding: EdgeInsets.all(10)),
-            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1)),
-            Padding(padding: EdgeInsets.all(10)),
-            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 4)),
-            Padding(padding: EdgeInsets.all(10)),
-            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 5)),
-            Padding(padding: EdgeInsets.all(10)),
-            Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 3)),
-            Padding(padding: EdgeInsets.all(10)),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Sunday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('Nome').snapshots(),
+        builder: (context, snapshot){
+          if(!snapshot.hasData) return const Text('Loading...');
+          return SliverList(
+            delegate: SliverChildListDelegate(
+              <Widget>[
+                Padding(padding: EdgeInsets.all(10)),
+                Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1)),
+                Padding(padding: EdgeInsets.all(10)),
+                Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 4)),
+                Padding(padding: EdgeInsets.all(10)),
+                Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 5)),
+                Padding(padding: EdgeInsets.all(10)),
+                Container_Ristorante(new Ristorante("Marcellino", "assets/images/Marcellino.jpg", 3)),
+                Padding(padding: EdgeInsets.all(10)),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Sunday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.wb_sunny),
+                  title: Text('Monday'),
+                  subtitle: Text('sunny, h: 80, l: 65'),
+                ),
+                // ListTiles++
+              ],
             ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-            ListTile(
-              leading: Icon(Icons.wb_sunny),
-              title: Text('Monday'),
-              subtitle: Text('sunny, h: 80, l: 65'),
-            ),
-          // ListTiles++
-        ],
+          );
+        },
       ),
     );
   }

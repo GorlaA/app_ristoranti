@@ -54,6 +54,7 @@ class Container_Ristorante extends StatelessWidget{
       ),
       constraints: const BoxConstraints.expand(height: 200.0, width: 200),
       padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: const ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(

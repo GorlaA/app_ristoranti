@@ -14,10 +14,10 @@ class Home_app_page extends StatelessWidget{
   Home_app_page(this.nomeUtente, {Key? key}) : super(key: key){
     ristoranti = [
       Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1),
-      Ristorante("Marcellino", "assets/images/Marcellino.jpg", 2),
-      Ristorante("Marcellino", "assets/images/Marcellino.jpg", 3),
-      Ristorante("Marcellino", "assets/images/Marcellino.jpg", 4),
-      Ristorante("Marcellino", "assets/images/Marcellino.jpg", 5),
+      Ristorante("Pescaria", "assets/images/Pescaria.jpg", 2),
+      Ristorante("Mamma\nMilano", "assets/images/MammaMilano.jpg", 3),
+      Ristorante("Beato te\nMilano", "assets/images/logoBeatoTe.jpg", 4),
+      Ristorante("PaninoLAB", "assets/images/paninolab-isola.jpg", 5),
     ];
   }
   @override

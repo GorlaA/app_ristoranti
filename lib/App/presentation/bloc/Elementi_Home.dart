@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 
 //Barra di navigazione dinamica
 class Bottom_Navigation_Bar extends StatelessWidget {
+  Color temaApp = Colors.black26;
   @override
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
-      backgroundColor: Colors.white,
-      buttonBackgroundColor: Colors.white,
+      backgroundColor: temaApp,
+      buttonBackgroundColor: Colors.lightBlueAccent,
       color: const Color.fromARGB(255, 250, 182, 80),
       items: const <Widget> [
         Icon(Icons.water_damage, size: 30,),
-        Icon(Icons.add_location, size: 30,),
+        Icon(Icons.location_on, size: 30,),
         Icon(Icons.zoom_in, size: 30,),
         Icon(Icons.account_circle, size: 30,)
       ],
@@ -71,7 +72,7 @@ class _ListaRistorantiState extends State<ListaRistoranti>{
     return SliverList(
       delegate: SliverChildListDelegate(
         <Widget>[
-          Container(child: Text(nome, style: const TextStyle(color: Colors.black, fontSize: 30), textAlign: TextAlign.center), margin: EdgeInsets.all(10)),
+          Container(child: Text(nome, style: const TextStyle(color: Colors.lightBlueAccent, fontSize: 30), textAlign: TextAlign.center), margin: EdgeInsets.all(10)),
           for (var element in ristoranti) Container_Ristorante(element)
         ],
       ),

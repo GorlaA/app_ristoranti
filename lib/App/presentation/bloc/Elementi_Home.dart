@@ -14,9 +14,9 @@ class Bottom_Navigation_Bar extends StatelessWidget {
       buttonBackgroundColor: Colors.lightBlueAccent,
       color: const Color.fromARGB(255, 250, 182, 80),
       items: const <Widget> [
-        Icon(Icons.water_damage, size: 30,),
+        Icon(Icons.home, size: 30,),
         Icon(Icons.location_on, size: 30,),
-        Icon(Icons.zoom_in, size: 30,),
+        Icon(Icons.search, size: 30,),
         Icon(Icons.account_circle, size: 30,)
       ],
     );

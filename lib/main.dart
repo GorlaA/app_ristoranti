@@ -1,6 +1,4 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
 import 'App/presentation/bloc/Elementi_Home.dart';
 
 //class news Crea oggetto news da mettere nel body

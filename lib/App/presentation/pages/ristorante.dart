@@ -12,7 +12,7 @@ class Ristorante_page extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: temaApp,
+        backgroundColor: Color.fromARGB(255, 250, 182, 80),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverList(
@@ -23,7 +23,16 @@ class Ristorante_page extends StatelessWidget{
                     children: [
                       Image.asset(ristorante.getImage()),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      titolo("Marcellino"),
+                      titolo(ristorante.getNome()),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Valutazioni"),
+                      subTitlesLower("Nostre:"),
+                      starsIcons(),
+                      subTitlesLower("Vostre: "),
+                      heartIcons(),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Posizione"),
+                      subTitlesLower(ristorante.getIndirizzo()),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       subTitles("Social"),
                       socialButtonIcons(),
@@ -32,8 +41,14 @@ class Ristorante_page extends StatelessWidget{
                       Padding(padding: EdgeInsets.only(top: 20)),
                       subTitles("Foto"),
                       Center(
-                        child: Carousel_slider_foto_ristorante(ristorante.getFotos().length),
+                        child: Carousel_slider_foto_ristorante(ristorante.getFotos().length, ristorante),
                       ),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Orario"),
+                      subTitlesLower(ristorante.getOrario()),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Categoria"),
+                      subTitlesLower(ristorante.categoria),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       subTitles("Descrizione"),
                       descrizioneRistorante(),
@@ -49,11 +64,14 @@ class Ristorante_page extends StatelessWidget{
   Widget subTitles(String text){
     return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),],);
   }
+  Widget subTitlesLower(String text){
+    return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
+  }
   Widget titolo(String text) {
     return Row(
       children: [
         Padding(padding: EdgeInsets.only(left: 5)),
-        Text(ristorante.getNome(), style: TextStyle(color: Colors.black, fontSize: 60),),
+        Text(text, style: TextStyle(color: Colors.black, fontSize: 60),),
       ],
     );
   }
@@ -62,6 +80,30 @@ class Ristorante_page extends StatelessWidget{
       child: Container(
         padding: EdgeInsets.all(5),
         child: Text(ristorante.getDescrizione(), style: TextStyle(fontSize: 20),),
+      ),
+    );
+  }
+  Widget starsIcons() {
+    double iconSize = 15;
+    return Padding(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            for (int i = 0; i < 5; i++) if(i< ristorante.getRating())Icon(Icons.star, color: Colors.lightBlueAccent,)else Icon(Icons.star_border, color: Colors.lightBlueAccent,)
+          ],
+        ),
+    );
+  }
+  Widget heartIcons() {
+    double iconSize = 15;
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          for (int i = 0; i < 5; i++) if(i< ristorante.getRating())Icon(Icons.favorite, color: Colors.lightBlueAccent,)else Icon(Icons.favorite_border, color: Colors.lightBlueAccent,)
+        ],
       ),
     );
   }
@@ -74,21 +116,14 @@ class Ristorante_page extends StatelessWidget{
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            color: Colors.white,
-            child: IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.facebook,
-                color: Colors.black,
-                size: iconSize,
-              ),
-            ),
+            decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(90.0),),),color:Colors.lightBlueAccent,),
+            child: IconButton(onPressed: null, icon: Icon(Icons.facebook, color: Colors.black, size: iconSize,),),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            color: Colors.white,
+            decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(90.0),),),color:Colors.lightBlueAccent,),
             child: IconButton(
               onPressed: null,
               icon: Icon(
@@ -102,7 +137,7 @@ class Ristorante_page extends StatelessWidget{
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            color: Colors.white,
+            decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(90.0),),),color:Colors.lightBlueAccent,),
             child: IconButton(
               onPressed: null,
               icon: Icon(
@@ -116,7 +151,7 @@ class Ristorante_page extends StatelessWidget{
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            color: Colors.white,
+            decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(90.0),),),color:Colors.lightBlueAccent,),
             child: IconButton(
               onPressed: null,
               icon: Icon(
@@ -149,7 +184,8 @@ class BackButtonApp extends StatelessWidget{
 
 class Carousel_slider_foto_ristorante extends StatelessWidget {
   int count;
-  Carousel_slider_foto_ristorante(this.count);
+  Ristorante ristorante;
+  Carousel_slider_foto_ristorante(this.count, this.ristorante);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -163,7 +199,7 @@ class Carousel_slider_foto_ristorante extends StatelessWidget {
         ),
         itemCount: count,
         itemBuilder: (context, index, realIndex){
-          return buildImage("Panino"+index.toString(), index);
+          return buildImage(ristorante.getTitoloCartella()+"/Panino"+index.toString(), index);
         },
       ),
     );
@@ -179,7 +215,7 @@ class Carousel_slider_foto_ristorante extends StatelessWidget {
       ),
       child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset("assets/images/Marcellino/"+url+".jpg", fit: BoxFit.fill,),
+          child: Image.asset("assets/images/"+url+".jpg", fit: BoxFit.fill,),
       ),
     );
   }

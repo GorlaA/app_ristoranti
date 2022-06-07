@@ -14,10 +14,10 @@ class Bottom_Navigation_Bar extends StatelessWidget {
       buttonBackgroundColor: Colors.lightBlueAccent,
       color: const Color.fromARGB(255, 250, 182, 80),
       items: const <Widget> [
-        Icon(Icons.home, size: 30,),
-        Icon(Icons.location_on, size: 30,),
-        Icon(Icons.search, size: 30,),
-        Icon(Icons.account_circle, size: 30,)
+        IconButton(onPressed: null, icon: Icon(Icons.home, color: Colors.black, size: 30,),),
+        IconButton(onPressed: null, icon: Icon(Icons.location_on, color: Colors.black, size: 30,),),
+        IconButton(onPressed: null, icon: Icon(Icons.search, color: Colors.black, size: 30,),),
+        IconButton(onPressed: null, icon: Icon(Icons.account_circle, color: Colors.black, size: 30,),),
       ],
     );
   }

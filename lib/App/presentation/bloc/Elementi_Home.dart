@@ -192,7 +192,8 @@ class Sliver_List extends StatelessWidget {
         stream: FirebaseFirestore.instance.collection('Nome').snapshots(),
         builder: (context, snapshot){
           if(!snapshot.hasData) return const Text('Loading...');
-          return SliverList(
+          return const Text("Prova");
+    /*return SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
                 Padding(padding: EdgeInsets.all(10)),
@@ -247,7 +248,7 @@ class Sliver_List extends StatelessWidget {
                 // ListTiles++
               ],
             ),
-          );
+          );*/
         },
       ),
     );

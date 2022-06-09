@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/home_app.dart';
+
 //Barra di navigazione dinamica
 class Bottom_Navigation_Bar extends StatelessWidget {
   Color temaApp = Colors.black26;
@@ -15,11 +17,15 @@ class Bottom_Navigation_Bar extends StatelessWidget {
       buttonBackgroundColor: Colors.lightBlueAccent,
       color: const Color.fromARGB(255, 250, 182, 80),
       items: const <Widget> [
-        IconButton(onPressed: null, icon: Icon(Icons.home, color: Colors.black, size: 30,),),
-        IconButton(onPressed: null, icon: Icon(Icons.location_on, color: Colors.black, size: 30,),),
-        IconButton(onPressed: null, icon: Icon(Icons.search, color: Colors.black, size: 30,),),
-        IconButton(onPressed: null, icon: Icon(Icons.account_circle, color: Colors.black, size: 30,),),
+        Icon(Icons.home, color: Colors.black, size: 30,),
+        Icon(Icons.location_on, color: Colors.black, size: 30,),
+        Icon(Icons.search, color: Colors.black, size: 30,),
+        Icon(Icons.account_circle, color: Colors.black, size: 30,),
       ],
+      onTap: (index) {
+        print(index);
+        Provider.of<PageProvider>(context, listen: false).changePage(index);
+      },
     );
   }
 }
@@ -31,27 +37,14 @@ class Sliver_App_Bar_Home extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: true,
-      floating: false,
-      snap: false,
-      expandedHeight: 250.0,
-      backgroundColor: const Color.fromARGB(255, 250, 182, 80),
-      shape:
-      const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(40)
-          )
-      ),
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-        title: ListTile(
-          title:
-            const Text('App', style: TextStyle(fontSize: 40.0)),
-          subtitle: Text(
-              'Benvenuto '+nomeUtente
-          ),
-        ),
-      ),
+          pinned: true,
+          floating: false,
+          snap: false,
+          expandedHeight: 250.0,
+          collapsedHeight: 80,
+          backgroundColor: const Color.fromARGB(255, 250, 182, 80),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),)),
+          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text('App', style: TextStyle(fontSize: 40.0),), subtitle: Text('Benvenuto '+nomeUtente),)),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 //Barra di navigazione dinamica
 class Bottom_Navigation_Bar extends StatelessWidget {

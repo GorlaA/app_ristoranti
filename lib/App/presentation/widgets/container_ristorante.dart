@@ -2,6 +2,7 @@ import 'package:app_ristoranti/App/presentation/pages/ristorante.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
+import 'package:provider/provider.dart';
 
 class Container_Ristorante extends StatelessWidget{
   Ristorante ristorante;

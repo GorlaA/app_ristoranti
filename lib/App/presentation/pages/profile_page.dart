@@ -2,10 +2,10 @@ import 'dart:core';
 import 'package:app_ristoranti/App/presentation/pages/home_app.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ristoranti/App/presentation/pages/ristorante.dart';
+import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
 class User {
   String nome;
   String cognome;
@@ -52,12 +52,4 @@ class ProfilePage extends StatelessWidget{
         ),)
     );
   }
-
-}
-
-Widget subTitles(String text, Color color){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: color, fontSize: 30, fontWeight: FontWeight.bold)),],);
-}
-Widget subTitlesLower(String text, Color color){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.normal)),],);
 }

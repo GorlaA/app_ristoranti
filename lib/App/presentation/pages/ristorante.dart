@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
+
+import '../widgets/container_ristorante.dart';
 
 class Ristorante_page extends StatelessWidget{
   Color temaApp = Colors.white;
@@ -26,32 +28,32 @@ class Ristorante_page extends StatelessWidget{
                       Padding(padding: EdgeInsets.only(top: 20)),
                       titolo(ristorante.getNome()),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Valutazioni"),
-                      subTitlesLower("Nostre:"),
+                      subTitles("Valutazioni", Colors.black),
+                      subTitlesLower("Nostre:", Colors.black),
                       starsIcons(),
-                      subTitlesLower("Vostre: "),
+                      subTitlesLower("Vostre: ", Colors.black),
                       heartIcons(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Posizione"),
-                      subTitlesLower(ristorante.getIndirizzo()),
+                      subTitles("Posizione", Colors.black),
+                      subTitlesLower(ristorante.getIndirizzo(), Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Social"),
+                      subTitles("Social", Colors.black),
                       socialButtonIcons(),
                       //Padding(padding: EdgeInsets.only(top: 20)),
                       //subTitles("Tags"),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Foto"),
+                      subTitles("Foto", Colors.black),
                       Center(
                         child: Carousel_slider_foto_ristorante(ristorante.getFotos().length, ristorante),
                       ),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Orario"),
-                      subTitlesLower(ristorante.getOrario()),
+                      subTitles("Orario", Colors.black),
+                      subTitlesLower(ristorante.getOrario(), Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Categoria"),
-                      subTitlesLower(ristorante.categoria),
+                      subTitles("Categoria", Colors.black),
+                      subTitlesLower(ristorante.categoria, Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Descrizione"),
+                      subTitles("Descrizione", Colors.black),
                       descrizioneRistorante(),
                     ],
                   )
@@ -209,12 +211,6 @@ class Carousel_slider_foto_ristorante extends StatelessWidget {
   }
 }
 
-Widget subTitles(String text){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),],);
-}
-Widget subTitlesLower(String text){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
-}
 Widget titolo(String text) {
   return Row(
     children: [

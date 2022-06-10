@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
 import 'package:provider/provider.dart';
 
+import 'headings.dart';
+
 class Container_Ristorante extends StatelessWidget{
   Ristorante ristorante;
 
@@ -51,11 +53,11 @@ class Container_Ristorante extends StatelessWidget{
                   Row(children: [Container(padding: EdgeInsets.only(left: 5), child: Text(ristorante.getNome(), style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold), textScaleFactor: 2,),),],),
                   //Row(mainAxisAlignment: MainAxisAlignment.start, children: [Container(padding: EdgeInsets.zero, alignment: Alignment.bottomLeft, child: starsIcons(ristorante),)],),
                   Row(children: [Padding(padding: EdgeInsets.all(5))],),
-                  Row(mainAxisAlignment: MainAxisAlignment.start,children: [subTitlesLower(ristorante.categoria)],),
+                  Row(mainAxisAlignment: MainAxisAlignment.start,children: [subTitlesLower(ristorante.categoria, Colors.black)],),
                   Row(children: [Padding(padding: EdgeInsets.all(5))],),
-                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [subTitlesLower(ristorante.getRating().toString()+"/5"), Icon(Icons.star, color: Colors.lightBlueAccent,),subTitlesLower(ristorante.getRating().toString()+"/5"), Icon(Icons.favorite, color: Colors.lightBlueAccent,)],),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [subTitlesLower(ristorante.getRating().toString()+"/5", Colors.black), Icon(Icons.star, color: Colors.lightBlueAccent,),subTitlesLower(ristorante.getRating().toString()+"/5", Colors.black), Icon(Icons.favorite, color: Colors.lightBlueAccent,)],),
                   Row(children: [Padding(padding: EdgeInsets.all(5))],),
-                  Row(mainAxisAlignment: MainAxisAlignment.start, children:[subTitlesLower(ristorante.getPrezzoMedio().toString()+"€")]),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children:[subTitlesLower(ristorante.getPrezzoMedio().toString()+"€", Colors.black)]),
                 ],
               ),
             ],
@@ -137,8 +139,4 @@ Widget heartIcons(Ristorante ristorante) {
       ],
     ),
   );
-}
-
-Widget subTitlesLower(String text){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
 }

@@ -1,4 +1,6 @@
 import 'package:app_ristoranti/App/presentation/pages/profile_page.dart';
+import 'package:app_ristoranti/App/presentation/pages/search_page.dart';
+import 'package:app_ristoranti/App/presentation/pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
@@ -103,17 +105,4 @@ class MainWidget extends StatelessWidget{
 
 }
 
-class MapPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Map", style: TextStyle(color: Colors.lightBlueAccent),),);
-  }
-}
-
-class SearchPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Search", style: TextStyle(color: Colors.lightBlueAccent),),);
-  }
-}
 

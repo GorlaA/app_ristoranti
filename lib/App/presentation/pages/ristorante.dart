@@ -62,20 +62,7 @@ class Ristorante_page extends StatelessWidget{
         )
       );
   }
-  Widget subTitles(String text){
-    return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),],);
-  }
-  Widget subTitlesLower(String text){
-    return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
-  }
-  Widget titolo(String text) {
-    return Row(
-      children: [
-        Padding(padding: EdgeInsets.only(left: 5)),
-        Text(text, style: TextStyle(color: Colors.black, fontSize: 60),),
-      ],
-    );
-  }
+
   Widget descrizioneRistorante(){
     return Center(
       child: Container(
@@ -220,4 +207,19 @@ class Carousel_slider_foto_ristorante extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget subTitles(String text){
+  return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),],);
+}
+Widget subTitlesLower(String text){
+  return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
+}
+Widget titolo(String text) {
+  return Row(
+    children: [
+      Padding(padding: EdgeInsets.only(left: 5)),
+      Text(text, style: TextStyle(color: Colors.black, fontSize: 60),),
+    ],
+  );
 }

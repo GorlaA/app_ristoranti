@@ -34,7 +34,7 @@ class Home_app_page extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title: 'App',
+      title: "App",
       home: Scaffold(
         backgroundColor: temaApp,
         bottomNavigationBar: Bottom_Navigation_Bar(),
@@ -93,7 +93,7 @@ class ColoredSafeArea extends StatelessWidget {
 }
 
 class MainWidget extends StatelessWidget{
-  List<Widget> screens = [HomePage("Gabriele"), MapPage(), SearchPage(), ProfilePage(User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg"))];
+  List<Widget> screens = [HomePage("Gabriele"), MapPage(), SearchPage(), ProfilePage(User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)"))];
   MainWidget();
   @override
   Widget build(BuildContext context) {

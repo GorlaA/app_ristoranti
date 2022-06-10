@@ -44,7 +44,7 @@ class Sliver_App_Bar_Home extends StatelessWidget{
           collapsedHeight: 80,
           backgroundColor: const Color.fromARGB(255, 250, 182, 80),
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),)),
-          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text('App', style: TextStyle(fontSize: 40.0),), subtitle: Text('Benvenuto '+nomeUtente),)),
+          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text("Top food", style: TextStyle(fontSize: 40.0),), subtitle: Text('Benvenuto '+nomeUtente),)),
     );
   }
 }

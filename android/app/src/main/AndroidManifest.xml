@@ -4,6 +4,8 @@
         android:label="app_ristoranti"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDrIxr9Lt9bKJXbE3YiZXBCWBZs98qLhKI"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -30,5 +32,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>

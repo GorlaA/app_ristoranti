@@ -2,7 +2,7 @@ import 'dart:core';
 import 'package:app_ristoranti/App/presentation/pages/home_app.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:provider/provider.dart';
 import 'package:app_ristoranti/App/presentation/pages/ristorante_page.dart';
 import 'package:app_ristoranti/App/presentation/widgets/headings.dart';

@@ -1,5 +1,4 @@
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';

@@ -1,19 +1,17 @@
-import 'package:app_ristoranti/App/presentation/pages/profile_page.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Map", style: TextStyle(color: Colors.lightBlueAccent),),);//Da sostituire con il widget della mappa
+    return MapSample();//Da sostituire con il widget della mappa
   }
 }
 
-/*class MapSample extends StatefulWidget {
+class MapSample extends StatefulWidget {
   @override
   State<MapSample> createState() => MapSampleState();
 }
@@ -63,4 +61,4 @@ class MapSampleState extends State<MapSample> {
       ),
     );
   }
-}*/
+}

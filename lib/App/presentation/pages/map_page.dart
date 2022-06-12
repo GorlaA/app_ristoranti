@@ -58,6 +58,7 @@ class MapSampleState extends State<MapSample> {
         markers: _markers,
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
+        zoomControlsEnabled: false,
       ),
     );
   }

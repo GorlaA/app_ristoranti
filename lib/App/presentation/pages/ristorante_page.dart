@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ristoranti/App/presentation/widgets/headings.dart';

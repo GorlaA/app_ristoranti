@@ -15,6 +15,15 @@ class SearchPage extends StatelessWidget{
 }
 
 class TopSearchPage extends StatelessWidget {
+  List<Ristorante> ristorantiTrovati = [
+    Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1, "Come un sarto che cuce abiti tailor made in base a gusto, personalità e esigenze, così Marcellino crea sul momento il tuo panino su misura, facendoti scegliere tra una grande varietà di ingredienti di prima scelta.",["Panino0","Panino1", "Panino2", "Panino3"], "Via Napo Torriani, 9, 20124 \nMilano MI", "Panineria", 15, 3, 4),
+    Ristorante("Pescaria", "assets/images/Pescaria.jpg", 2, "", ["Panino0","Panino1", "Panino2"], "Via Sant'Anatalone, 16, 20147 Milano MI", "Panineria", 20, 4, 3),
+    Ristorante("Mamma\nMilano", "assets/images/MammaMilano.jpg", 3, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Panineria", 30, 4, 4),
+    Ristorante("Beato te\nMilano", "assets/images/logoBeatoTe.jpg", 4, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Ristorante", 40, 1, 3),
+    Ristorante("PaninoLAB", "assets/images/paninolab-isola.jpg", 5, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Panineria", 10, 2, 1),
+  ];
+  List<String> tipologia =["Ristorante", "Panineria", "Pizzeria", "Bistrot", "Trattoria", "Sushi"];
+  List<String> proposta=["Carne", "Pesce", "Vegano"];
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
@@ -30,11 +39,7 @@ class TopSearchPage extends StatelessWidget {
           Padding(padding: EdgeInsets.all(10)),
           Row(
             children: [
-              Expanded(
-                child: SizedBox(
-                  child: Row(children: [CheckBoxSearch("Carne"), Padding(padding: EdgeInsets.all(5),), CheckBoxSearch("Pesce")],),
-                ),
-              ),
+              Expanded(child: ListButtons(proposta)),
             ],
           ),
           Padding(padding: EdgeInsets.all(20)),
@@ -47,11 +52,7 @@ class TopSearchPage extends StatelessWidget {
           Padding(padding: EdgeInsets.all(10)),
           Row(
             children: [
-              Expanded(
-                child: SizedBox(
-                  child: Row(children: [CheckBoxSearch("Ristorante"), Padding(padding: EdgeInsets.all(5),), CheckBoxSearch("Panineria")],),
-                ),
-              ),
+              Expanded(child: ListButtons(tipologia)),
             ],
           ),
           Padding(padding: EdgeInsets.all(20)),
@@ -92,6 +93,7 @@ class _CheckBoxSearchState extends State<CheckBoxSearch> {
         });
         },
       child: Container(
+        padding: EdgeInsets.all(5),
         constraints: BoxConstraints.expand(height: 80, width: 130),
         decoration: ShapeDecoration(
           color: color,
@@ -101,9 +103,31 @@ class _CheckBoxSearchState extends State<CheckBoxSearch> {
             ),
           ),
         ),
-
         child: Center(child: Text(title,textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),),
       ),
     );
   }
+}
+
+class ListButtons extends StatelessWidget{
+  List<String> categorie;
+  ListButtons(this.categorie);
+  @override
+  Widget build(BuildContext context) {
+      return ConstrainedBox(
+          constraints: new BoxConstraints(maxHeight: 70),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              for(int i = 0; i < categorie.length; i++)
+                for(int j = 0; j < 2; j ++)
+                  if(j%2 == 0)
+                    CheckBoxSearch(categorie[i])
+                  else
+                    Padding(padding: EdgeInsets.all(5)),
+            ],
+          ),
+      );
+  }
+
 }

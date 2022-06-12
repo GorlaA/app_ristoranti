@@ -55,6 +55,9 @@ class Ristorante_page extends StatelessWidget{
                       Padding(padding: EdgeInsets.only(top: 20)),
                       subTitles("Descrizione", Colors.black),
                       descrizioneRistorante(),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Valuta il ristorante", Colors.black),
+                      RowheartIconsButtons(),
                     ],
                   )
                 ],
@@ -85,6 +88,28 @@ class Ristorante_page extends StatelessWidget{
         ),
     );
   }
+
+  Widget RowheartIconsButtons() {
+    double iconSize = 50;
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          for (int i = 0; i < 5; i++) if(i< ristorante.getRatingPersonale())heartIconButton(false, iconSize)else heartIconButton(true, iconSize)
+        ],
+      ),
+    );
+  }
+
+  Widget heartIconButton(bool empty, double iconSize) {
+    Widget icon = Icon(Icons.favorite, color: Colors.lightBlueAccent, size: iconSize,);
+    if(empty) {
+      icon = Icon(Icons.favorite_border, color: Colors.lightBlueAccent, size: iconSize,);
+    }
+    return icon;
+  }
+
   Widget heartIcons() {
     double iconSize = 15;
     return Padding(
@@ -92,7 +117,7 @@ class Ristorante_page extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          for (int i = 0; i < 5; i++) if(i< ristorante.getRating())Icon(Icons.favorite, color: Colors.lightBlueAccent,)else Icon(Icons.favorite_border, color: Colors.lightBlueAccent,)
+          for (int i = 0; i < 5; i++) if(i< ristorante.getCommunityRating())Icon(Icons.favorite, color: Colors.lightBlueAccent,)else Icon(Icons.favorite_border, color: Colors.lightBlueAccent,)
         ],
       ),
     );

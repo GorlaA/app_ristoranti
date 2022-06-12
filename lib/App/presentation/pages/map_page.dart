@@ -8,6 +8,6 @@ import 'package:provider/provider.dart';
 class MapPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Map", style: TextStyle(color: Colors.lightBlueAccent),),);
+    return Center(child: Text("Map", style: TextStyle(color: Colors.lightBlueAccent),),);//Da sostituire con il widget della mappa
   }
 }

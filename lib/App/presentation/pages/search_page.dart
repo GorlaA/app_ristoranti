@@ -24,7 +24,7 @@ class TopSearchPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              subTitles("Categoria", Colors.lightBlueAccent),
+              subTitles("Proposta", Colors.lightBlueAccent),
             ],
           ),
           Padding(padding: EdgeInsets.all(10)),
@@ -41,7 +41,7 @@ class TopSearchPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              subTitles("Categoria 2", Colors.lightBlueAccent),
+              subTitles("Tipologia", Colors.lightBlueAccent),
             ],
           ),
           Padding(padding: EdgeInsets.all(10)),
@@ -49,7 +49,7 @@ class TopSearchPage extends StatelessWidget {
             children: [
               Expanded(
                 child: SizedBox(
-                  child: Row(children: [CheckBoxSearch("Pesce"), Padding(padding: EdgeInsets.all(5),), CheckBoxSearch("Pesce")],),
+                  child: Row(children: [CheckBoxSearch("Ristorante"), Padding(padding: EdgeInsets.all(5),), CheckBoxSearch("Panineria")],),
                 ),
               ),
             ],
@@ -57,7 +57,7 @@ class TopSearchPage extends StatelessWidget {
           Padding(padding: EdgeInsets.all(20)),
           Row(
             children: [
-              Expanded(child: SizedBox(child: Container_Ristorante(Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1, "Come un sarto che cuce abiti tailor made in base a gusto, personalità e esigenze, così Marcellino crea sul momento il tuo panino su misura, facendoti scegliere tra una grande varietà di ingredienti di prima scelta.",["Panino0","Panino1", "Panino2", "Panino3"], "Via Napo Torriani, 9, 20124 \nMilano MI", "Panineria", 15)),))
+              Expanded(child: SizedBox(child: Container_Ristorante(Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1, "Come un sarto che cuce abiti tailor made in base a gusto, personalità e esigenze, così Marcellino crea sul momento il tuo panino su misura, facendoti scegliere tra una grande varietà di ingredienti di prima scelta.",["Panino0","Panino1", "Panino2", "Panino3"], "Via Napo Torriani, 9, 20124 \nMilano MI", "Panineria", 15, 3, 4)),))
             ],
           )
         ],
@@ -76,7 +76,7 @@ class CheckBoxSearch extends StatefulWidget{
 class _CheckBoxSearchState extends State<CheckBoxSearch> {
   bool value = false;
   String title;
-  Color color = Colors.orange;
+  Color color = Color.fromARGB(255, 250, 182, 80);
   _CheckBoxSearchState(this.title);
 
   @override
@@ -85,10 +85,10 @@ class _CheckBoxSearchState extends State<CheckBoxSearch> {
       onTap: () {
         setState((){
           value = !value;
-          if(color == Colors.orange)
+          if(color == Color.fromARGB(255, 250, 182, 80))
             color = Colors.lightBlueAccent;
           else
-            color = Colors.orange;
+            color = Color.fromARGB(255, 250, 182, 80);
         });
         },
       child: Container(

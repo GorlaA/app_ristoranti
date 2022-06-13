@@ -11,53 +11,57 @@ import 'package:provider/provider.dart';
 class SearchPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return TopSearchPage();
+    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: TopSearchPage(),);
   }
 }
 
-class TopSearchPage extends StatelessWidget {
+class TopSearchPage extends StatefulWidget {
+  _TopSearchPageState createState() =>_TopSearchPageState();
+}
+
+class _TopSearchPageState extends State<TopSearchPage>{
   List<Ristorante> ristorantiTrovati = RistoTesting().getListaRistorantiTest;
   List<String> tipologia =["Ristorante", "Panineria", "Pizzeria", "Bistrot", "Trattoria", "Sushi"];
   List<String> proposta=["Carne", "Pesce", "Vegano"];
+
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(
-      child: Column(
-        children: [
-          Padding(padding: EdgeInsets.all(20)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              subTitles("Proposta", Colors.lightBlueAccent),
-            ],
-          ),
-          Padding(padding: EdgeInsets.all(10)),
-          Row(
-            children: [
-              Expanded(child: ListButtons(proposta)),
-            ],
-          ),
-          Padding(padding: EdgeInsets.all(20)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              subTitles("Tipologia", Colors.lightBlueAccent),
-            ],
-          ),
-          Padding(padding: EdgeInsets.all(10)),
-          Row(
-            children: [
-              Expanded(child: ListButtons(tipologia)),
-            ],
-          ),
-          Padding(padding: EdgeInsets.all(20)),
-          Row(
-            children: [
-              Expanded(child: SizedBox(child: Container_Ristorante(Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1, "Come un sarto che cuce abiti tailor made in base a gusto, personalità e esigenze, così Marcellino crea sul momento il tuo panino su misura, facendoti scegliere tra una grande varietà di ingredienti di prima scelta.",["Panino0","Panino1", "Panino2", "Panino3"], "Via Napo Torriani, 9, 20124 \nMilano MI", "Panineria", 15, 3, 4)),))
-            ],
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        TopBarPage("Ricerca"),
+        Padding(padding: EdgeInsets.all(10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            subTitles("Proposta", Colors.lightBlueAccent),
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(10)),
+        Row(
+          children: [
+            Expanded(child: ListButtons(proposta)),
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            subTitles("Tipologia", Colors.lightBlueAccent),
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(10)),
+        Row(
+          children: [
+            Expanded(child: ListButtons(tipologia)),
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(15)),
+        Row(
+          children: [
+            Expanded(child: SizedBox(child: Container_Ristorante((RistoTesting().getRistoranteTest))))
+          ],
+        )
+      ],
     );
   }
 }

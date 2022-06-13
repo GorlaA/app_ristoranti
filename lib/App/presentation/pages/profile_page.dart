@@ -32,6 +32,7 @@ class ProfilePage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            TopBarPage("Profilo"),
             Row(mainAxisAlignment: MainAxisAlignment.center,children: [Container(constraints: const BoxConstraints.expand(height: 200.0, width: 200), padding: const EdgeInsets.all(10), margin: const EdgeInsets.all(10), decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0),),), color: Colors.black,), child: ClipRRect(borderRadius: BorderRadius.circular(90), child: Image.asset(user.foto,fit: BoxFit.fill,)),)],),
             Row(mainAxisAlignment: MainAxisAlignment.center,children: [subTitles("Nome", Color.fromARGB(255, 250, 182, 80)),],),
             Padding(padding: EdgeInsets.only(top: 5)),

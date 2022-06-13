@@ -1,6 +1,7 @@
 import 'package:app_ristoranti/App/presentation/pages/home_app.dart';
 import 'package:app_ristoranti/App/presentation/pages/profile_page.dart';
 import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
@@ -29,7 +30,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
     return Column(
       children: [
         TopBarPage("Ricerca"),
-        Padding(padding: EdgeInsets.all(10)),
+        Padding(padding: EdgeInsets.all(20)),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -42,7 +43,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
             Expanded(child: ListButtons(proposta)),
           ],
         ),
-        Padding(padding: EdgeInsets.all(10)),
+        Padding(padding: EdgeInsets.all(20)),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -55,15 +56,46 @@ class _TopSearchPageState extends State<TopSearchPage>{
             Expanded(child: ListButtons(tipologia)),
           ],
         ),
-        Padding(padding: EdgeInsets.all(15)),
+        Padding(padding: EdgeInsets.all(20)),
         Row(
           children: [
-            Expanded(child: SizedBox(child: Container_Ristorante((RistoTesting().getRistoranteTest))))
+            sliderContainerRistoranti(ristorantiTrovati),
           ],
         )
       ],
     );
   }
+}
+
+class sliderContainerRistoranti extends StatefulWidget {
+  List<Ristorante> ristorantiTrovati;
+  sliderContainerRistoranti(this.ristorantiTrovati);
+  _sliderContainerRistorantiState createState() => _sliderContainerRistorantiState(ristorantiTrovati);
+}
+
+class _sliderContainerRistorantiState extends State<sliderContainerRistoranti> {
+  List<Ristorante> ristorantiTrovati;
+
+  _sliderContainerRistorantiState(this.ristorantiTrovati);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(child: CarouselSlider.builder(
+        options: CarouselOptions(
+          disableCenter: true,
+          viewportFraction: 1,
+          autoPlay: false,
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          autoPlayCurve: Curves.fastOutSlowIn,
+        ),
+        itemCount: ristorantiTrovati.length,
+        itemBuilder: (context, index, realIndex){
+          return Container_Ristorante(ristorantiTrovati[index]);
+        },
+      )
+    );
+  }
+
 }
 
 class CheckBoxSearch extends StatefulWidget{

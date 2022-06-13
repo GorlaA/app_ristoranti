@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class SearchPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: TopSearchPage(),);
+    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: TopSearchPage());
   }
 }
 

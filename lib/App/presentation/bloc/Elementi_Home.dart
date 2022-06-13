@@ -1,4 +1,5 @@
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -29,6 +30,28 @@ class Bottom_Navigation_Bar extends StatelessWidget {
   }
 }
 
+class TopBarPage extends StatelessWidget{
+  String titolo;
+  TopBarPage(this.titolo);
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: 80,
+        decoration: ShapeDecoration(
+          color: Color.fromARGB(255, 250, 182, 80),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.0),
+            ),
+          ),
+        ),
+        child: Padding(padding:EdgeInsets.only(left: 35, bottom: 0, top: 20) ,child: Text(titolo,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold)),),
+      );
+  }
+
+}
+
 //Barra superiore flessibile con titolo e nome utente
 class Sliver_App_Bar_Home extends StatelessWidget{
   String nomeUtente = "";
@@ -43,7 +66,7 @@ class Sliver_App_Bar_Home extends StatelessWidget{
           collapsedHeight: 80,
           backgroundColor: const Color.fromARGB(255, 250, 182, 80),
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),)),
-          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text("Top food", style: TextStyle(fontSize: 40.0),), subtitle: Text('Benvenuto '+nomeUtente),)),
+          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text("Top food", style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),), subtitle: Text('Benvenuto '+nomeUtente),)),
     );
   }
 }

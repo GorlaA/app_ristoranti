@@ -150,12 +150,14 @@ class ListButtons extends StatelessWidget{
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
+              Padding(padding: EdgeInsets.only(left: 5)),
               for(int i = 0; i < categorie.length; i++)
                 for(int j = 0; j < 2; j ++)
                   if(j%2 == 0)
                     CheckBoxSearch(categorie[i])
                   else
                     Padding(padding: EdgeInsets.all(5)),
+              Padding(padding: EdgeInsets.only(right: 5)),
             ],
           ),
       );

@@ -40,7 +40,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
         Padding(padding: EdgeInsets.all(10)),
         Row(
           children: [
-            Expanded(child: ListButtons(proposta)),
+            Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(proposta))),
           ],
         ),
         Padding(padding: EdgeInsets.all(20)),
@@ -53,7 +53,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
         Padding(padding: EdgeInsets.all(10)),
         Row(
           children: [
-            Expanded(child: ListButtons(tipologia)),
+            Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(tipologia))),
           ],
         ),
         Padding(padding: EdgeInsets.all(20)),
@@ -98,69 +98,79 @@ class _sliderContainerRistorantiState extends State<sliderContainerRistoranti> {
 
 }
 
-class CheckBoxSearch extends StatefulWidget{
-  String title;
-  CheckBoxSearch(this.title);
-  @override
-  _CheckBoxSearchState createState() => _CheckBoxSearchState(title);
+class CategorysCheckBox extends StatefulWidget {
+  List <BoxCategory> boxes;
+  CategorysCheckBox(this.boxes);
+  CategorysCheckBoxState createState() => CategorysCheckBoxState(this.boxes);
 }
-@override
-class _CheckBoxSearchState extends State<CheckBoxSearch> {
-  bool value = false;
-  String title;
-  Color color = Color.fromARGB(255, 250, 182, 80);
-  _CheckBoxSearchState(this.title);
 
+class CategorysCheckBoxState extends State<CategorysCheckBox>{
+  List <BoxCategory> boxes;
+  CategorysCheckBoxState(this.boxes);
+  Color ottieniColore(int x) {
+    Color color;
+    if(boxes[x].getValue)
+      color = Colors.lightBlueAccent;
+    else
+      color = Color.fromARGB(255, 250, 182, 80);
+    return color;
+  }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState((){
-          value = !value;
-          if(color == Color.fromARGB(255, 250, 182, 80))
-            color = Colors.lightBlueAccent;
-          else
-            color = Color.fromARGB(255, 250, 182, 80);
-        });
-        },
-      child: Container(
-        padding: EdgeInsets.all(5),
-        constraints: BoxConstraints.expand(height: 80, width: 130),
-        decoration: ShapeDecoration(
-          color: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
-            ),
-          ),
-        ),
-        child: Center(child: Text(title,textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),),
+    return ConstrainedBox(
+      constraints: new BoxConstraints(maxHeight: 70),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Padding(padding: EdgeInsets.only(left: 5)),
+          for(int i = 0; i < boxes.length; i++)
+            for(int j = 0; j < 2; j ++)
+              if(j%2 == 0)
+                GestureDetector(
+                  onTap: () {
+                    setState((){
+                      boxes[i].toggleValue();
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    constraints: BoxConstraints.expand(height: 80, width: 130),
+                    decoration: ShapeDecoration(
+                      color: ottieniColore(i),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30.0),
+                        ),
+                      ),
+                    ),
+                    child: Center(child: Text(boxes[i].getTitolo,textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),),
+                  ),
+                )
+              else
+                Padding(padding: EdgeInsets.all(5)),
+          Padding(padding: EdgeInsets.only(right: 5)),
+        ],
       ),
     );
   }
 }
 
-class ListButtons extends StatelessWidget{
-  List<String> categorie;
-  ListButtons(this.categorie);
-  @override
-  Widget build(BuildContext context) {
-      return ConstrainedBox(
-          constraints: new BoxConstraints(maxHeight: 70),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(padding: EdgeInsets.only(left: 5)),
-              for(int i = 0; i < categorie.length; i++)
-                for(int j = 0; j < 2; j ++)
-                  if(j%2 == 0)
-                    CheckBoxSearch(categorie[i])
-                  else
-                    Padding(padding: EdgeInsets.all(5)),
-              Padding(padding: EdgeInsets.only(right: 5)),
-            ],
-          ),
-      );
+class BoxCategory {
+  String titolo;
+  bool value = false;
+  BoxCategory(this.titolo);
+
+  void toggleValue(){value = !value;}
+
+  get getValue => value;
+  get getTitolo => titolo;
+  List <BoxCategory> getBoxes(List<String> titoli) {
+    List <BoxCategory> boxes = <BoxCategory>[];
+    for(int i = 0; i < titoli.length; i++){
+      boxes.add(BoxCategory(titoli[i]));
+    }
+    return boxes;
   }
 
 }
+

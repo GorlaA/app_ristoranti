@@ -9,7 +9,7 @@ import '../pages/home_app.dart';
 
 //Barra di navigazione dinamica
 class Bottom_Navigation_Bar extends StatelessWidget {
-  Color temaApp = Colors.black26;
+  Color temaApp = Colors.black;
   @override
   Widget build(BuildContext context) {
     return CurvedNavigationBar(

@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
 
+import '../../domain/entities/ristorante.dart';
 import '../widgets/container_ristorante.dart';
 
 class Ristorante_page extends StatelessWidget{

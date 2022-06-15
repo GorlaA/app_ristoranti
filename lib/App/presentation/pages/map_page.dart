@@ -8,6 +8,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/shared_widgets.dart';
+
 class MapProvider extends ChangeNotifier{
   bool visibleConRist = false;
   MapProvider();

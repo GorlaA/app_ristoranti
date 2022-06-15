@@ -4,9 +4,11 @@ import 'package:app_ristoranti/App/presentation/pages/search_page.dart';
 import 'package:app_ristoranti/App/presentation/pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import '../../domain/entities/ristorante.dart';
+import '../../domain/entities/utente.dart';
+import '../widgets/shared_widgets.dart';
 
 void main() {
   runApp(
@@ -41,27 +43,28 @@ class Home_app_page extends StatelessWidget{
       home: Scaffold(
         backgroundColor: temaApp,
         bottomNavigationBar: Bottom_Navigation_Bar(),
-        body: MainWidget(),
+        body: MainWidget(User("Mario", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)")),
       ),
     );
   }
 }
 
 class HomePage extends StatelessWidget{
-  String nomeUtente = "";
-
-  HomePage(this.nomeUtente, {Key? key}) : super(key: key);
+  User utente;
+  HomePage(this.utente, {Key? key}) : super(key: key);
   List<Ristorante> ristoranti = RistoTesting().getListaRistorantiTest;
 
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: CustomScrollView(
-      slivers: <Widget>[
-        Sliver_App_Bar_Home(nomeUtente),
-        ListaRistoranti("In evidenza", ristoranti),
-        ListaRistoranti("Nelle vicinanze", ristoranti)
-      ],
-    ),);
+    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),
+      child: CustomScrollView(
+        slivers: <Widget>[
+          Sliver_App_Bar_Home(utente.getNome),
+          ListaRistoranti("In evidenza", ristoranti),
+          ListaRistoranti("Nelle vicinanze", ristoranti)
+        ],
+      ),
+    );
   }
 }
 
@@ -90,8 +93,10 @@ class ColoredSafeArea extends StatelessWidget {
 }
 
 class MainWidget extends StatelessWidget{
-  List<Widget> screens = [HomePage("Gabriele"), MapPage(), SearchPage(), ProfilePage(User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)"))];
-  MainWidget();
+  User utente;
+  List<Widget> screens = <Widget>[];
+  MainWidget(this.utente){this.screens = [HomePage(utente), MapPage(), SearchPage(), ProfilePage(utente)];}
+
   @override
   Widget build(BuildContext context) {
     int page = Provider.of<PageProvider>(context, listen: true).page;

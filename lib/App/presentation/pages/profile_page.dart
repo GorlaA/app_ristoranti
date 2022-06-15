@@ -6,19 +6,9 @@ import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
 import 'package:provider/provider.dart';
 import 'package:app_ristoranti/App/presentation/pages/ristorante_page.dart';
 import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
-class User {
-  String nome;
-  String cognome;
-  String foto;
-  String mail;
-  String citta;
-  User(this.nome, this.cognome, this.mail, this.foto, this.citta);
 
-  get getNome => nome;
-  get getCognome => cognome;
-  get getMail => mail;
-  get getFoto => foto;
-}
+import '../../domain/entities/utente.dart';
+import '../widgets/shared_widgets.dart';
 
 class ProfilePage extends StatelessWidget{
   User user;
@@ -33,7 +23,25 @@ class ProfilePage extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TopBarPage("Profilo"),
-            Row(mainAxisAlignment: MainAxisAlignment.center,children: [Container(constraints: const BoxConstraints.expand(height: 200.0, width: 200), padding: const EdgeInsets.all(10), margin: const EdgeInsets.all(10), decoration: const ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0),),), color: Colors.black,), child: ClipRRect(borderRadius: BorderRadius.circular(90), child: Image.asset(user.foto,fit: BoxFit.fill,)),)],),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  constraints: const BoxConstraints.expand(height: 200.0, width: 200),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0),),
+                    ), color: Colors.black,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(90),
+                      child: Image.asset(user.foto,fit: BoxFit.fill,)
+                  ),
+                )
+              ],
+            ),
             Row(mainAxisAlignment: MainAxisAlignment.center,children: [subTitles("Nome", Color.fromARGB(255, 250, 182, 80)),],),
             Padding(padding: EdgeInsets.only(top: 5)),
             Row(mainAxisAlignment: MainAxisAlignment.center,children: [subTitlesLower(user.nome, Colors.lightBlueAccent)]),

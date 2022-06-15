@@ -9,6 +9,9 @@ import 'package:app_ristoranti/App/domain/test-values/Ristoranti_testing.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/entities/ristorante.dart';
+import '../widgets/shared_widgets.dart';
+
 class SearchPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -171,6 +174,5 @@ class BoxCategory {
     }
     return boxes;
   }
-
 }
 

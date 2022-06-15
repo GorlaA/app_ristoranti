@@ -11,12 +11,13 @@ import '../../domain/entities/utente.dart';
 import '../widgets/shared_widgets.dart';
 
 void main() {
+  User user = User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)");
   runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => PageProvider(),)
         ],
-        child: Home_app_page("Gabriele"),
+        child: Home_app_page(user),
       )
   );
 }
@@ -33,9 +34,9 @@ class PageProvider extends ChangeNotifier{
 }
 
 class Home_app_page extends StatelessWidget{
-  String nomeUtente = "";
+  User user;
   Color temaApp = Colors.black26;
-  Home_app_page(this.nomeUtente, {Key? key}) : super(key: key){}
+  Home_app_page(this.user, {Key? key}) : super(key: key){}
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -43,7 +44,7 @@ class Home_app_page extends StatelessWidget{
       home: Scaffold(
         backgroundColor: temaApp,
         bottomNavigationBar: Bottom_Navigation_Bar(),
-        body: MainWidget(User("Mario", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)")),
+        body: MainWidget(user),
       ),
     );
   }

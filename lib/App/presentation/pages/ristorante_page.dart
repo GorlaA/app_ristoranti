@@ -58,7 +58,9 @@ class Ristorante_page extends StatelessWidget{
                       descrizioneRistorante(),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       subTitles("Valuta il ristorante", Colors.black),
-                      RowheartIconsButtons(),
+                      //RowheartIconsButtons(),
+                      PersonalVoteButtons(List.generate(5, (index) => (ristorante.getRatingPersonale() > index))),
+                      Padding(padding: EdgeInsets.all(10)),
                     ],
                   )
                 ],
@@ -245,3 +247,43 @@ Widget titolo(String text) {
     ],
   );
 }
+
+class PersonalVoteButtons extends StatefulWidget {
+  List <bool> selections;
+  PersonalVoteButtons(this.selections);
+  PersonalVoteButtonsState createState() => PersonalVoteButtonsState(this.selections);
+}
+
+class PersonalVoteButtonsState extends State<PersonalVoteButtons>{
+  List <bool> selections;
+  PersonalVoteButtonsState(this.selections);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start ,
+        children:[
+          Padding(padding: EdgeInsets.all(5)),
+          ToggleButtons(
+            children: [
+              for (int i = 0; i < 5; i++)
+                if(selections[i])
+                  Icon(Icons.favorite, color: Colors.lightBlueAccent, size: 50,)
+                else
+                  Icon(Icons.favorite_border, color: Colors.lightBlueAccent, size: 50,)
+            ],
+            onPressed: (int index) {
+              setState((){
+                for(int i = 0; i < 5; i++)
+                  if(i<=index)
+                    selections[i] = true;
+                  else
+                    selections[i] = false;
+              });
+            },
+            isSelected: selections,
+          ),
+        ]
+    );
+  }
+}
+

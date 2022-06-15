@@ -87,7 +87,8 @@ class _sliderContainerRistorantiState extends State<sliderContainerRistoranti> {
         options: CarouselOptions(
           disableCenter: true,
           viewportFraction: 1,
-          autoPlay: false,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 4),
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
         ),

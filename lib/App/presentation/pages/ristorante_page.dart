@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:app_ristoranti/App/presentation/widgets/headings.dart';
+
+import '../../domain/entities/ristorante.dart';
+import '../widgets/container_ristorante.dart';
 
 class Ristorante_page extends StatelessWidget{
   Color temaApp = Colors.white;
@@ -26,33 +29,38 @@ class Ristorante_page extends StatelessWidget{
                       Padding(padding: EdgeInsets.only(top: 20)),
                       titolo(ristorante.getNome()),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Valutazioni"),
-                      subTitlesLower("Nostre:"),
+                      subTitles("Valutazioni", Colors.black),
+                      subTitlesLower("Nostre:", Colors.black),
                       starsIcons(),
-                      subTitlesLower("Vostre: "),
+                      subTitlesLower("Vostre: ", Colors.black),
                       heartIcons(),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Posizione"),
-                      subTitlesLower(ristorante.getIndirizzo()),
+                      subTitles("Posizione", Colors.black),
+                      subTitlesLower(ristorante.getIndirizzo(), Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Social"),
+                      subTitles("Social", Colors.black),
                       socialButtonIcons(),
                       //Padding(padding: EdgeInsets.only(top: 20)),
                       //subTitles("Tags"),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Foto"),
+                      subTitles("Foto", Colors.black),
                       Center(
                         child: Carousel_slider_foto_ristorante(ristorante.getFotos().length, ristorante),
                       ),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Orario"),
-                      subTitlesLower(ristorante.getOrario()),
+                      subTitles("Orario", Colors.black),
+                      subTitlesLower(ristorante.getOrario(), Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Categoria"),
-                      subTitlesLower(ristorante.categoria),
+                      subTitles("Categoria", Colors.black),
+                      subTitlesLower(ristorante.categoria, Colors.black),
                       Padding(padding: EdgeInsets.only(top: 20)),
-                      subTitles("Descrizione"),
+                      subTitles("Descrizione", Colors.black),
                       descrizioneRistorante(),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      subTitles("Valuta il ristorante", Colors.black),
+                      //RowheartIconsButtons(),
+                      PersonalVoteButtons(List.generate(5, (index) => (ristorante.getRatingPersonale() > index))),
+                      Padding(padding: EdgeInsets.all(10)),
                     ],
                   )
                 ],
@@ -83,6 +91,28 @@ class Ristorante_page extends StatelessWidget{
         ),
     );
   }
+
+  Widget RowheartIconsButtons() {
+    double iconSize = 50;
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          for (int i = 0; i < 5; i++) if(i< ristorante.getRatingPersonale())heartIconButton(false, iconSize)else heartIconButton(true, iconSize)
+        ],
+      ),
+    );
+  }
+
+  Widget heartIconButton(bool empty, double iconSize) {
+    Widget icon = Icon(Icons.favorite, color: Colors.lightBlueAccent, size: iconSize,);
+    if(empty) {
+      icon = Icon(Icons.favorite_border, color: Colors.lightBlueAccent, size: iconSize,);
+    }
+    return icon;
+  }
+
   Widget heartIcons() {
     double iconSize = 15;
     return Padding(
@@ -90,7 +120,7 @@ class Ristorante_page extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          for (int i = 0; i < 5; i++) if(i< ristorante.getRating())Icon(Icons.favorite, color: Colors.lightBlueAccent,)else Icon(Icons.favorite_border, color: Colors.lightBlueAccent,)
+          for (int i = 0; i < 5; i++) if(i< ristorante.getCommunityRating())Icon(Icons.favorite, color: Colors.lightBlueAccent,)else Icon(Icons.favorite_border, color: Colors.lightBlueAccent,)
         ],
       ),
     );
@@ -209,12 +239,6 @@ class Carousel_slider_foto_ristorante extends StatelessWidget {
   }
 }
 
-Widget subTitles(String text){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),],);
-}
-Widget subTitlesLower(String text){
-  return Row(children: [Padding(padding: EdgeInsets.only(left: 5, top: 5)),Text(text,textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.normal)),],);
-}
 Widget titolo(String text) {
   return Row(
     children: [
@@ -223,3 +247,43 @@ Widget titolo(String text) {
     ],
   );
 }
+
+class PersonalVoteButtons extends StatefulWidget {
+  List <bool> selections;
+  PersonalVoteButtons(this.selections);
+  PersonalVoteButtonsState createState() => PersonalVoteButtonsState(this.selections);
+}
+
+class PersonalVoteButtonsState extends State<PersonalVoteButtons>{
+  List <bool> selections;
+  PersonalVoteButtonsState(this.selections);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start ,
+        children:[
+          Padding(padding: EdgeInsets.all(5)),
+          ToggleButtons(
+            children: [
+              for (int i = 0; i < 5; i++)
+                if(selections[i])
+                  Icon(Icons.favorite, color: Colors.lightBlueAccent, size: 50,)
+                else
+                  Icon(Icons.favorite_border, color: Colors.lightBlueAccent, size: 50,)
+            ],
+            onPressed: (int index) {
+              setState((){
+                for(int i = 0; i < 5; i++)
+                  if(i<=index)
+                    selections[i] = true;
+                  else
+                    selections[i] = false;
+              });
+            },
+            isSelected: selections,
+          ),
+        ]
+    );
+  }
+}
+

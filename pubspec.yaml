@@ -32,17 +32,24 @@ dependencies:
 
   flutter:
     sdk: flutter
+  google_maps_flutter: ^0.5.27+3
+  # Add the following two lines
+  http: ^0.12.0+1
+  json_serializable: ^3.3.0
 
 
   # The following adds the Cupertino Icons fonts to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
-  firebase_core: ^1.14.1
-  cloud_firestore: ^3.1.17
+  # firebase_core: ^1.14.1
+  # cloud_firestore: ^3.1.17
   carousel_slider: ^4.1.1
 
 dev_dependencies:
+  pedantic: ^1.9.0
+  build_runner: ^1.10.0
+
   flutter_test:
     sdk: flutter
 

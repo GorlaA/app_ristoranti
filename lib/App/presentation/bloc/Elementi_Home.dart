@@ -1,34 +1,11 @@
 import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-
+import '../../domain/entities/ristorante.dart';
 import '../pages/home_app.dart';
-
-//Barra di navigazione dinamica
-class Bottom_Navigation_Bar extends StatelessWidget {
-  Color temaApp = Colors.black26;
-  @override
-  Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      backgroundColor: temaApp,
-      buttonBackgroundColor: Colors.lightBlueAccent,
-      color: const Color.fromARGB(255, 250, 182, 80),
-      items: const <Widget> [
-        Icon(Icons.home, color: Colors.black, size: 30,),
-        Icon(Icons.location_on, color: Colors.black, size: 30,),
-        Icon(Icons.search, color: Colors.black, size: 30,),
-        Icon(Icons.account_circle, color: Colors.black, size: 30,),
-      ],
-      onTap: (index) {
-        print(index);
-        Provider.of<PageProvider>(context, listen: false).changePage(index);
-      },
-    );
-  }
-}
 
 //Barra superiore flessibile con titolo e nome utente
 class Sliver_App_Bar_Home extends StatelessWidget{
@@ -44,7 +21,7 @@ class Sliver_App_Bar_Home extends StatelessWidget{
           collapsedHeight: 80,
           backgroundColor: const Color.fromARGB(255, 250, 182, 80),
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),)),
-          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text("Top food", style: TextStyle(fontSize: 40.0),), subtitle: Text('Benvenuto '+nomeUtente),)),
+          flexibleSpace: FlexibleSpaceBar(centerTitle: true, title: ListTile(title: Text("Top food", style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),), subtitle: Text('Benvenuto '+nomeUtente),)),
     );
   }
 }

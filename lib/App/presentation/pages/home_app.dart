@@ -1,17 +1,23 @@
+import 'package:app_ristoranti/App/domain/test-values/Ristoranti_testing.dart';
 import 'package:app_ristoranti/App/presentation/pages/profile_page.dart';
+import 'package:app_ristoranti/App/presentation/pages/search_page.dart';
+import 'package:app_ristoranti/App/presentation/pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-import 'package:app_ristoranti/App/presentation/widgets/container_ristorante.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import '../../domain/entities/ristorante.dart';
+import '../../domain/entities/utente.dart';
+import '../widgets/shared_widgets.dart';
 
 void main() {
+  User user = User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)");
   runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => PageProvider(),)
         ],
-        child: Home_app_page("Gabriele"),
+        child: Home_app_page(user),
       )
   );
 }
@@ -28,9 +34,9 @@ class PageProvider extends ChangeNotifier{
 }
 
 class Home_app_page extends StatelessWidget{
-  String nomeUtente = "";
+  User user;
   Color temaApp = Colors.black26;
-  Home_app_page(this.nomeUtente, {Key? key}) : super(key: key){}
+  Home_app_page(this.user, {Key? key}) : super(key: key){}
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -38,33 +44,28 @@ class Home_app_page extends StatelessWidget{
       home: Scaffold(
         backgroundColor: temaApp,
         bottomNavigationBar: Bottom_Navigation_Bar(),
-        body: MainWidget(),
+        body: MainWidget(user),
       ),
     );
   }
 }
 
 class HomePage extends StatelessWidget{
-  String nomeUtente = "";
+  User utente;
+  HomePage(this.utente, {Key? key}) : super(key: key);
+  List<Ristorante> ristoranti = RistoTesting().getListaRistorantiTest;
 
-  HomePage(this.nomeUtente, {Key? key}) : super(key: key);
-
-  List<Ristorante> ristoranti = [
-      Ristorante("Marcellino", "assets/images/Marcellino.jpg", 1, "Come un sarto che cuce abiti tailor made in base a gusto, personalità e esigenze, così Marcellino crea sul momento il tuo panino su misura, facendoti scegliere tra una grande varietà di ingredienti di prima scelta.",["Panino0","Panino1", "Panino2", "Panino3"], "Via Napo Torriani, 9, 20124 \nMilano MI", "Panineria", 15),
-      Ristorante("Pescaria", "assets/images/Pescaria.jpg", 2, "", ["Panino0","Panino1", "Panino2"], "Via Sant'Anatalone, 16, 20147 Milano MI", "Panineria", 20),
-      Ristorante("Mamma\nMilano", "assets/images/MammaMilano.jpg", 3, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Panineria", 30),
-      Ristorante("Beato te\nMilano", "assets/images/logoBeatoTe.jpg", 4, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Ristorante", 40),
-      Ristorante("PaninoLAB", "assets/images/paninolab-isola.jpg", 5, "", ["Panino0","Panino1", "Panino2", "Panino3"], "", "Panineria", 10),
-    ];
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: CustomScrollView(
-      slivers: <Widget>[
-        Sliver_App_Bar_Home(nomeUtente),
-        ListaRistoranti("In evidenza", ristoranti),
-        ListaRistoranti("Nelle vicinanze", ristoranti)
-      ],
-    ),);
+    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),
+      child: CustomScrollView(
+        slivers: <Widget>[
+          Sliver_App_Bar_Home(utente.getNome),
+          ListaRistoranti("In evidenza", ristoranti),
+          ListaRistoranti("Nelle vicinanze", ristoranti)
+        ],
+      ),
+    );
   }
 }
 
@@ -93,27 +94,15 @@ class ColoredSafeArea extends StatelessWidget {
 }
 
 class MainWidget extends StatelessWidget{
-  List<Widget> screens = [HomePage("Gabriele"), MapPage(), SearchPage(), ProfilePage(User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)"))];
-  MainWidget();
+  User utente;
+  List<Widget> screens = <Widget>[];
+  MainWidget(this.utente){this.screens = [HomePage(utente), MapPage(), SearchPage(), ProfilePage(utente)];}
+
   @override
   Widget build(BuildContext context) {
     int page = Provider.of<PageProvider>(context, listen: true).page;
     return screens[page];
   }
-
 }
 
-class MapPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Map", style: TextStyle(color: Colors.lightBlueAccent),),);
-  }
-}
-
-class SearchPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text("Search", style: TextStyle(color: Colors.lightBlueAccent),),);
-  }
-}
 

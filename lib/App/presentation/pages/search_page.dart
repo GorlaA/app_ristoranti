@@ -15,7 +15,24 @@ import '../widgets/shared_widgets.dart';
 class SearchPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return ColoredSafeArea(color: Color.fromARGB(255, 250, 182, 80),child: TopSearchPage());
+    return ColoredSafeArea(
+        color: Color.fromARGB(255, 250, 182, 80),
+        child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                collapsedHeight: 80,
+                backgroundColor: Color.fromARGB(255, 250, 182, 80),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),)),
+                title: ListTile(
+                  contentPadding: EdgeInsets.only(left: 20, bottom: 0, top: 40),
+                  title: Text("Ricerca",textAlign: TextAlign.left, style: TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold)),
+                )
+              ),
+              TopSearchPage()
+            ],
+        ),
+    );
   }
 }
 
@@ -30,42 +47,50 @@ class _TopSearchPageState extends State<TopSearchPage>{
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TopBarPage("Ricerca"),
-        Padding(padding: EdgeInsets.all(20)),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            subTitles("Proposta", Colors.lightBlueAccent),
-          ],
-        ),
-        Padding(padding: EdgeInsets.all(10)),
-        Row(
-          children: [
-            Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(proposta))),
-          ],
-        ),
-        Padding(padding: EdgeInsets.all(20)),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            subTitles("Tipologia", Colors.lightBlueAccent),
-          ],
-        ),
-        Padding(padding: EdgeInsets.all(10)),
-        Row(
-          children: [
-            Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(tipologia))),
-          ],
-        ),
-        Padding(padding: EdgeInsets.all(20)),
-        Row(
-          children: [
-            sliderContainerRistoranti(ristorantiTrovati),
-          ],
-        )
-      ],
+    return SliverList(
+        delegate: SliverChildListDelegate(
+          <Widget>[
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                subTitles("Proposta", Colors.lightBlueAccent),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              children: [
+                Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(proposta))),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                subTitles("Tipologia", Colors.lightBlueAccent),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              children: [
+                Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(tipologia))),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buttonSubmit(),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            Row(
+              children: [
+                sliderContainerRistoranti(ristorantiTrovati),
+              ],
+            ),
+        ],
+      )
     );
   }
 }
@@ -174,6 +199,31 @@ class BoxCategory {
       boxes.add(BoxCategory(titoli[i]));
     }
     return boxes;
+  }
+}
+
+class buttonSubmit extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: null,
+      child: Container(
+          color: Colors.deepPurple,
+          width: MediaQuery.of(context).size.width,
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: EdgeInsets.all(5)),
+              Text(
+                "Submit",
+                style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          )
+      ) ,
+    );
   }
 }
 

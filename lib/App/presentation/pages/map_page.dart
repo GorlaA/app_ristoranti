@@ -75,7 +75,7 @@ class MapSampleState extends State<MapSample> {
             Marker(
               markerId: MarkerId('id-'+i.toString()),
               position: LatLng(45.49060628897456+i, 8.958427513477101),
-              consumeTapEvents: true,
+              //consumeTapEvents: true,
               onTap:(){Provider.of<MapProvider>(context, listen: false).changeContRistState(true);},
               infoWindow: InfoWindow(
                   title: 'Marcellino'+i.toString(),

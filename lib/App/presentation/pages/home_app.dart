@@ -4,7 +4,7 @@ import 'package:app_ristoranti/App/presentation/pages/search_page.dart';
 import 'package:app_ristoranti/App/presentation/pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ristoranti/App/presentation/bloc/Elementi_Home.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import '../../domain/entities/ristorante.dart';
 import '../../domain/entities/utente.dart';

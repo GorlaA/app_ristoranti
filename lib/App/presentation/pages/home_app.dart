@@ -1,4 +1,5 @@
 import 'package:app_ristoranti/App/domain/test-values/Ristoranti_testing.dart';
+import 'package:app_ristoranti/App/presentation/pages/empty_test_page.dart';
 import 'package:app_ristoranti/App/presentation/pages/profile_page.dart';
 import 'package:app_ristoranti/App/presentation/pages/search_page.dart';
 import 'package:app_ristoranti/App/presentation/pages/map_page.dart';
@@ -9,19 +10,6 @@ import 'package:provider/provider.dart';
 import '../../domain/entities/ristorante.dart';
 import '../../domain/entities/utente.dart';
 import '../widgets/shared_widgets.dart';
-
-void main() {
-  User user = User("Gabriele", "Groppo", "lelegroppo.gg@gmail.com", "assets/images/FotoProfilo.jpg", "Milano (MI)");
-  runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => PageProvider(),)
-        ],
-        child: Home_app_page(user),
-      )
-  );
-}
-
 
 class PageProvider extends ChangeNotifier{
   int page = 0;
@@ -97,7 +85,7 @@ class ColoredSafeArea extends StatelessWidget {
 class MainWidget extends StatelessWidget{
   User utente;
   List<Widget> screens = <Widget>[];
-  MainWidget(this.utente){this.screens = [HomePage(utente), MapPage(), SearchPage(), ProfilePage(utente)];}
+  MainWidget(this.utente){this.screens = [HomePage(utente), EmptyPage(), SearchPage(), ProfilePage(utente)];}
 
   @override
   Widget build(BuildContext context) {

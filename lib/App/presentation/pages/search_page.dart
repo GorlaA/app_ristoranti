@@ -33,7 +33,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
     return Column(
       children: [
         TopBarPage("Ricerca"),
-        Padding(padding: EdgeInsets.all(20)),
+        Padding(padding: EdgeInsets.all(10)),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -46,7 +46,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
             Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(proposta))),
           ],
         ),
-        Padding(padding: EdgeInsets.all(20)),
+        Padding(padding: EdgeInsets.all(10)),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -59,7 +59,14 @@ class _TopSearchPageState extends State<TopSearchPage>{
             Expanded(child: CategorysCheckBox(BoxCategory("").getBoxes(tipologia))),
           ],
         ),
-        Padding(padding: EdgeInsets.all(20)),
+        Padding(padding: EdgeInsets.all(10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(color: Colors.deepPurpleAccent,width: MediaQuery.of(context).size.width, height: 40,child: subTitlesLower("submit", Colors.black),)
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(10)),
         Row(
           children: [
             sliderContainerRistoranti(ristorantiTrovati),

@@ -5,7 +5,7 @@ class EmptyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Map page"),);
+    return Center(child: Text("Map page", style: TextStyle(color: Colors.red),),);
   }
 
 }

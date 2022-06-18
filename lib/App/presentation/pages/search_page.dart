@@ -63,7 +63,7 @@ class _TopSearchPageState extends State<TopSearchPage>{
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(color: Colors.deepPurpleAccent,width: MediaQuery.of(context).size.width, height: 40,child: subTitlesLower("submit", Colors.black),)
+            buttonSubmit(),
           ],
         ),
         Padding(padding: EdgeInsets.all(10)),
@@ -181,6 +181,31 @@ class BoxCategory {
       boxes.add(BoxCategory(titoli[i]));
     }
     return boxes;
+  }
+}
+
+class buttonSubmit extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: null,
+      child: Container(
+          color: Colors.deepPurple,
+          width: MediaQuery.of(context).size.width,
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: EdgeInsets.all(5)),
+              Text(
+                "Submit",
+                style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          )
+      ) ,
+    );
   }
 }
 
